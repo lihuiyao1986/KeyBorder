@@ -1,0 +1,31 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+.digtal-keybord,
+.char-keybord {
+	table-layout: fixed;
+}
+
+.digtal-keybord tbody tr td,
+.char-keybord tbody tr td,
+.digtal-keybord tbody tr td>button,
+.char-keybord tbody tr td>button {
+	border: none;
+	outline: none;
+	font-size: 18px;
+	color: #414141;
+	font-weight: 500;
+	background-color: #EAEAEA;
+	overflow: hidden;
+}
+
+.digtal-keybord tbody tr td:hover,
+.char-keybord tbody tr td:hover,
+.digtal-keybord tbody tr td>button:hover,
+.char-keybord tbody tr td>button:hover {
+	cursor: pointer;
+	font-size: 25px;
+	background-color: #AFAFAF;
+}

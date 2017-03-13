@@ -1,6 +1,6 @@
 ;
 (function($, window, document, undefined) {
-
+	
 	var KeyBord = function($container, $input, $options) {
 		this.$container = $container,
 			this.$input = $input,
