@@ -33,69 +33,38 @@
 		},
 		bindEvents: function() {
 			var self = this;
-			if(this.options.isZepTo) {
-				$(document).on("tap", ".keybord-item", function() {
-					if($(this).is("." + self.options.digitalKeybordContainer + "-item")) {
-						if($(this).data("id") == "delete") {
-							if(self.$input && self.$input.length > 0) {
-								if(self.$input.val().length > 0) {
-									self.$input.val(self.$input.val().substring(0, self.$input.val().length - 1));
-								}
-							}
-						} else if($(this).data("id") == "switch") {
-							$("." + self.options.digitalKeybordContainer).hide();
-							$("." + self.options.charKeybordContainer).show();
-						} else {
-							if(self.$input && self.$input.length > 0) {
-								self.$input.val(self.$input.val() + $(this).text());
-							}
-						}
-					} else {
-						if($(this).data("id") == "delete") {
+			var eventName = this.options.isZepTo ? "tap" : "click";
+			$(document).on(eventName, ".keybord-item", function() {
+				if($(this).is("." + self.options.digitalKeybordContainer + "-item")) {
+					if($(this).data("id") == "delete") {
+						if(self.$input && self.$input.length > 0) {
 							if(self.$input.val().length > 0) {
 								self.$input.val(self.$input.val().substring(0, self.$input.val().length - 1));
 							}
-						} else if($(this).data("id") == "switch") {
-							$("." + self.options.charKeybordContainer).hide();
-							$("." + self.options.digitalKeybordContainer).show();
-						} else {
-							if(self.$input && self.$input.length > 0) {
-								self.$input.val(self.$input.val() + $(this).text());
-							}
+						}
+					} else if($(this).data("id") == "switch") {
+						$("." + self.options.digitalKeybordContainer).hide();
+						$("." + self.options.charKeybordContainer).show();
+					} else {
+						if(self.$input && self.$input.length > 0) {
+							self.$input.val(self.$input.val() + $(this).text());
 						}
 					}
-				});
-			} else {
-				$(document).on("click", ".keybord-item", function() {
-					if($(this).is("." + self.options.digitalKeybordContainer + "-item")) {
-						if($(this).data("id") == "delete") {
-							if(self.$input.val().length > 0) {
-								self.$input.val(self.$input.val().substring(0, self.$input.val().length - 1));
-							}
-						} else if($(this).data("id") == "switch") {
-							$("." + self.options.digitalKeybordContainer).hide();
-							$("." + self.options.charKeybordContainer).show();
-						} else {
-							if(self.$input && self.$input.length > 0) {
-								self.$input.val(self.$input.val() + $(this).text());
-							}
+				} else {
+					if($(this).data("id") == "delete") {
+						if(self.$input.val().length > 0) {
+							self.$input.val(self.$input.val().substring(0, self.$input.val().length - 1));
 						}
+					} else if($(this).data("id") == "switch") {
+						$("." + self.options.charKeybordContainer).hide();
+						$("." + self.options.digitalKeybordContainer).show();
 					} else {
-						if($(this).data("id") == "delete") {
-							if(self.$input.val().length > 0) {
-								self.$input.val(self.$input.val().substring(0, self.$input.val().length - 1));
-							}
-						} else if($(this).data("id") == "switch") {
-							$("." + self.options.charKeybordContainer).hide();
-							$("." + self.options.digitalKeybordContainer).show();
-						} else {
-							if(self.$input && self.$input.length > 0) {
-								self.$input.val(self.$input.val() + $(this).text());
-							}
+						if(self.$input && self.$input.length > 0) {
+							self.$input.val(self.$input.val() + $(this).text());
 						}
 					}
-				});
-			}
+				}
+			});
 			return this;
 		},
 		digitalItems: function() { //小写字母键盘
@@ -115,11 +84,11 @@
 					"label": "字母",
 					"value": "switch"
 				});
-			}else{
+			} else {
 				result.push({
 					"label": "0",
 					"value": "0",
-					"spanColumn" : 2
+					"spanColumn": 2
 				});
 			}
 			result.push({
@@ -178,12 +147,12 @@
 				var spanColumn = item.spanColumn || 1;
 				if(indx % colums == 0) {
 					html += "<tr>";
-					html += "<td colspan='"+spanColumn+"'><button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' style='height:" + itemSize + "px;width:" + (itemSize * spanColumn + 1) + "px'>" + item.label + "</button></td>";
+					html += "<td colspan='" + spanColumn + "'><button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' style='height:" + itemSize + "px;width:" + (itemSize * spanColumn + 1) + "px'>" + item.label + "</button></td>";
 				} else if(indx % colums == colums - 1) {
-					html += "<td colspan='"+spanColumn+"'><button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' style='height:" + itemSize + "px;width:" + (itemSize * spanColumn + 1) + "px'>" + item.label + "</button></td>";
+					html += "<td colspan='" + spanColumn + "'><button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' style='height:" + itemSize + "px;width:" + (itemSize * spanColumn + 1) + "px'>" + item.label + "</button></td>";
 					html += "</tr>";
 				} else {
-					html += "<td colspan='"+spanColumn+"'><button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' style='height:" + itemSize + "px;width:" + (itemSize * spanColumn + 1) + "px'>" + item.label + "</button></td>";
+					html += "<td colspan='" + spanColumn + "'><button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' style='height:" + itemSize + "px;width:" + (itemSize * spanColumn + 1) + "px'>" + item.label + "</button></td>";
 				}
 			}
 			html += "</tbody>";
