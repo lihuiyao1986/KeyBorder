@@ -7,17 +7,26 @@
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 		<script type="text/javascript" src="js/keybord.js"></script>
 		<style>
-			.digtal-keybord ,.char-keybord {
+			body {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			.digtal-keybord,
+			.char-keybord {
 				table-layout: fixed;
 			}
 			
-			.digtal-keybord tbody tr td,.char-keybord tbody tr td {
-				background-color: lightgray;
+			.digtal-keybord tbody tr td,
+			.char-keybord tbody tr td {
+				background-color: #EAEAEA;
+				overflow: hidden;
 			}
 			
-			.digtal-keybord tbody tr td>button,.char-keybord tbody tr td>button{
-				width: 60px;
-				height: 60px;
+			.digtal-keybord tbody tr td>button,
+			.char-keybord tbody tr td>button {
+				/*width: 60px;
+				height: 60px;*/
 				border: none;
 				outline: none;
 				font-size: 18px;
@@ -26,7 +35,15 @@
 				background-color: #EAEAEA;
 			}
 			
-			.digtal-keybord tbody tr td>button:hover,.char-keybord tbody tr td>button:hover {
+			.digtal-keybord tbody tr td>button:hover,
+			.char-keybord tbody tr td>button:hover {
+				cursor: pointer;
+				font-size: 25px;
+				background-color: #AFAFAF;
+			}
+			
+			.digtal-keybord tbody tr td:hover,
+			.char-keybord tbody tr td:hover {
 				cursor: pointer;
 				font-size: 25px;
 				background-color: #AFAFAF;
@@ -36,8 +53,10 @@
 		<script>
 			$(document).ready(function() {
 				var pageForm = {
-					init:function(){
-						$("#keybord-container").KeyBord($("#myInput"));
+					init: function() {
+						$("#keybord-container").KeyBord($("#myInput"),{
+							digitalHiddenSwitch : true
+						});
 					}
 				};
 				pageForm.init();
@@ -46,9 +65,9 @@
 	</head>
 
 	<body>
-	    <input type="text" id="myInput" placeholder="请输入购气量"/>
+		<input type="text" id="myInput" placeholder="请输入购气量" />
 		<div id="keybord-container">
-			
+
 		</div>
 	</body>
 
