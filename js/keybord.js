@@ -8,7 +8,7 @@
 				itemSize: 80, //每个键盘item的大小
 				digitalKeybordContainer: "digtal-keybord", // 放置数字键盘的容器
 				charKeybordContainer: "char-keybord", // 放置字母键盘的容器
-				itemSpaceing: 2, //键盘按钮的间隔
+				itemSpacing: 2, //键盘按钮的间隔
 				digitalKeybordColums: 3, //数字键盘每行显示的列数
 				charKeybordColumns: 7, //字母键盘每行显示的列数
 				isUpperCharKeybord: false, //是否是大写的字母键盘
@@ -20,14 +20,14 @@
 
 	KeyBord.prototype = {
 		createDigitalKeybordHtml: function($keybordContainer, isHidden) {
-			$keybordContainer.append(this.createHtml(this.digitalItems(), this.options.digitalKeybordColums, this.options.itemSize, this.options.digitalKeybordContainer, isHidden));
+			$keybordContainer.append(this.createHtml(this.digitalItems(), this.options.digitalKeybordColums, this.options.itemSize, this.options.digitalKeybordContainer, isHidden,this.options.itemSpacing));
 			return this;
 		},
 		createCharKeybordHtml: function($keybordContainer, isHidden) {
 			if(this.options.isUpperCharKeybord) {
-				$keybordContainer.append(this.createHtml(this.lowerCharItems(), this.options.charKeybordColumns, this.options.itemSize, this.options.charKeybordContainer, isHidden));
+				$keybordContainer.append(this.createHtml(this.lowerCharItems(), this.options.charKeybordColumns, this.options.itemSize, this.options.charKeybordContainer, isHidden,this.options.itemSpacing));
 			} else {
-				$keybordContainer.append(this.createHtml(this.upperCharItems(), this.options.charKeybordColumns, this.options.itemSize, this.options.charKeybordContainer, isHidden));
+				$keybordContainer.append(this.createHtml(this.upperCharItems(), this.options.charKeybordColumns, this.options.itemSize, this.options.charKeybordContainer, isHidden,this.options.itemSpacing));
 			}
 			return this;
 		},
@@ -133,14 +133,14 @@
 			});
 			return result;
 		},
-		createHtml: function(items, colums, itemSize, tbNode, isHidden, cellSpace) {
+		createHtml: function(items, colums, itemSize, tbNode, isHidden, cellSpacing) {
 			tbNode = tbNode || "digtal-keybord";
 			colums = colums || 3;
 			itemSize = itemSize || "60px";
 			items = items || [];
-			cellSpace = cellSpace || 2;
+			cellSpacing = cellSpacing || 2;
 			var hiddenStyle = isHidden ? 'style="display:none;"' : '';
-			var html = '<table ' + hiddenStyle + ' class="' + tbNode + '" cellpadding="0" cellspacing="' + cellSpace + '">';
+			var html = '<table ' + hiddenStyle + ' class="' + tbNode + '" cellpadding="0" cellspacing="' + cellSpacing + '">';
 			html += "<tbody class='" + tbNode + "-tb'>";
 			for(var indx in items) {
 				var item = items[indx];
