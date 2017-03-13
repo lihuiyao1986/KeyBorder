@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/keybord.js"></script>
+		<style>
+			.digtal-keybord ,.char-keybord {
+				table-layout: fixed;
+			}
+			
+			.digtal-keybord tbody tr td,.char-keybord tbody tr td {
+				background-color: lightgray;
+			}
+			
+			.digtal-keybord tbody tr td>button,.char-keybord tbody tr td>button{
+				width: 60px;
+				height: 60px;
+				border: none;
+				outline: none;
+				font-size: 18px;
+				color: #414141;
+				font-weight: 500;
+				background-color: #EAEAEA;
+			}
+			
+			.digtal-keybord tbody tr td>button:hover,.char-keybord tbody tr td>button:hover {
+				cursor: pointer;
+				font-size: 25px;
+				background-color: #AFAFAF;
+			}
+		</style>
+
+		<script>
+			$(document).ready(function() {
+				var pageForm = {
+					init:function(){
+						$("#keybord-container").KeyBord($("#myInput"));
+					}
+				};
+				pageForm.init();
+			});
+		</script>
+	</head>
+
+	<body>
+	    <input type="text" id="myInput" placeholder="请输入购气量"/>
+		<div id="keybord-container">
+			
+		</div>
+	</body>
+
+</html>
