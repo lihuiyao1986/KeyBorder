@@ -5,14 +5,15 @@
 		this.$container = $container,
 			this.$input = $input,
 			this.defaults = {
-				itemSize: "80px",
-				digitalKeybordContainer: "digtal-keybord",
-				charKeybordContainer: "char-keybord",
-				itemSpaceing: 2,
-				digitalKeybordColums: 3,
-				charKeybordColumns: 7,
-				isUpperCharKeybord: false,
-				isZepTo: false
+				itemSize: "80px",//每个键盘item的大小
+				digitalKeybordContainer: "digtal-keybord",// 放置数字键盘的容器
+				charKeybordContainer: "char-keybord",// 放置字母键盘的容器
+				itemSpaceing: 2,//键盘按钮的间隔
+				digitalKeybordColums: 3,//数字键盘每行显示的列数
+				charKeybordColumns: 7,//字母键盘每行显示的列数
+				isUpperCharKeybord: false,//是否是大写的字母键盘
+				digitalHiddenSwitch:false,//数字键盘是否隐藏切换按钮
+				isZepTo: false//是否是zepto
 			},
 			this.options = $.extend({}, this.defaults, $options)
 	};
@@ -98,7 +99,7 @@
 			}
 			return this;
 		},
-		digitalItems: function() { //小写字母键盘
+		digitalItems: function(hiddenSwitchBtn) { //小写字母键盘
 			var result = [];
 			for(var indx = 0; indx <= 8; indx++) {
 				result.push({
@@ -110,10 +111,12 @@
 				"label": "0",
 				"value": "0"
 			});
-			result.push({
-				"label": "字母",
-				"value": "switch"
-			});
+			if(!hiddenSwitchBtn) {
+				result.push({
+					"label": "字母",
+					"value": "switch"
+				});
+			}
 			result.push({
 				"label": "删除",
 				"value": "delete"
