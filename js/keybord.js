@@ -154,17 +154,17 @@
 					html += "<tr>";
 					html += "<td width=" + tdItemW + " height=" + tdItemH + " colspan='" + spanColumn + "'>" +
 						"<button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item'" +
-						"style='height:" + itemH + "px;width:" + (itemW * spanColumn) + "px'>" + item.label + "</button></td>";
+						"style='height:" + itemH + "px;width:" + (itemW * spanColumn + (spanColumn -1) * this.options.horizontalSpacing) + "px'>" + item.label + "</button></td>";
 				} else
 				if(indx % colums == colums - 1) {
 					html += "<td width=" + tdItemW + " height=" + tdItemH + " colspan='" + spanColumn + "'>" +
 						"<button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' " +
-						"style='height:" + itemH + "px;width:" + (itemW * spanColumn) + "px'>" + item.label + "</button></td>";
+						"style='height:" + itemH + "px;width:" + (itemW * spanColumn + (spanColumn -1) * this.options.horizontalSpacing) + "px'>" + item.label + "</button></td>";
 					html += "</tr>";
 				} else {
 					html += "<td width=" + tdItemW + " height=" + tdItemH + " colspan='" + spanColumn + "'>" +
 						"<button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' " +
-						" style='height:" + itemH + "px;width:" + (itemW * spanColumn) + "px'>" + item.label + "</button></td>";
+						" style='height:" + itemH + "px;width:" + (itemW * spanColumn + (spanColumn -1) * this.options.horizontalSpacing) + "px'>" + item.label + "</button></td>";
 				}
 			}
 			html += "</tbody>";
