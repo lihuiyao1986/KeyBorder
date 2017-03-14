@@ -1,14 +1,17 @@
 ;
 (function($, window, document, undefined) {
-	
+
 	var KeyBord = function($container, $input, $options) {
 		this.$container = $container,
 			this.$input = $input,
 			this.defaults = {
 				itemSize: 80, //每个键盘item的大小
+				itemW: 80, // 高度
+				itemH: 80, // 宽度
+				verticalSpacing: 10,//垂直间隔
+				horizontalSpacing: 10,//水平间隔
 				digitalKeybordContainer: "digtal-keybord", // 放置数字键盘的容器
 				charKeybordContainer: "char-keybord", // 放置字母键盘的容器
-				itemSpacing: 2, //键盘按钮的间隔
 				digitalKeybordColums: 3, //数字键盘每行显示的列数
 				charKeybordColumns: 7, //字母键盘每行显示的列数
 				isUpperCharKeybord: false, //是否是大写的字母键盘
@@ -20,14 +23,14 @@
 
 	KeyBord.prototype = {
 		createDigitalKeybordHtml: function($keybordContainer, isHidden) {
-			$keybordContainer.append(this.createHtml(this.digitalItems(), this.options.digitalKeybordColums, this.options.itemSize, this.options.digitalKeybordContainer, isHidden,this.options.itemSpacing));
+			$keybordContainer.append(this.createHtml(this.digitalItems(), this.options.digitalKeybordColums,this.options.digitalKeybordContainer, isHidden));
 			return this;
 		},
 		createCharKeybordHtml: function($keybordContainer, isHidden) {
 			if(this.options.isUpperCharKeybord) {
-				$keybordContainer.append(this.createHtml(this.lowerCharItems(), this.options.charKeybordColumns, this.options.itemSize, this.options.charKeybordContainer, isHidden,this.options.itemSpacing));
+				$keybordContainer.append(this.createHtml(this.lowerCharItems(), this.options.charKeybordColumns, this.options.charKeybordContainer, isHidden));
 			} else {
-				$keybordContainer.append(this.createHtml(this.upperCharItems(), this.options.charKeybordColumns, this.options.itemSize, this.options.charKeybordContainer, isHidden,this.options.itemSpacing));
+				$keybordContainer.append(this.createHtml(this.upperCharItems(), this.options.charKeybordColumns, this.options.charKeybordContainer, isHidden));
 			}
 			return this;
 		},
@@ -133,26 +136,35 @@
 			});
 			return result;
 		},
-		createHtml: function(items, colums, itemSize, tbNode, isHidden, cellSpacing) {
+		createHtml: function(items, colums, tbNode, isHidden) {
 			tbNode = tbNode || "digtal-keybord";
 			colums = colums || 3;
-			itemSize = itemSize || "60px";
+			var itemH = this.options.itemH;
+			var itemW = this.options.itemW;
+			var tdItemH = itemH + this.options.verticalSpacing;
+			var tdItemW = itemW + this.options.horizontalSpacing;
 			items = items || [];
-			cellSpacing = cellSpacing || 2;
 			var hiddenStyle = isHidden ? 'style="display:none;"' : '';
-			var html = '<table ' + hiddenStyle + ' class="' + tbNode + '" cellpadding="0" cellspacing="' + cellSpacing + '">';
+			var html = '<table ' + hiddenStyle + ' class="' + tbNode + '" cellpadding="0" cellspacing="0">';
 			html += "<tbody class='" + tbNode + "-tb'>";
 			for(var indx in items) {
 				var item = items[indx];
 				var spanColumn = item.spanColumn || 1;
 				if(indx % colums == 0) {
 					html += "<tr>";
-					html += "<td colspan='" + spanColumn + "'><button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' style='height:" + itemSize + "px;width:" + (itemSize * spanColumn + 1) + "px'>" + item.label + "</button></td>";
-				} else if(indx % colums == colums - 1) {
-					html += "<td colspan='" + spanColumn + "'><button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' style='height:" + itemSize + "px;width:" + (itemSize * spanColumn + 1) + "px'>" + item.label + "</button></td>";
+					html += "<td width=" + tdItemW + " height=" + tdItemH + " colspan='" + spanColumn + "'>" +
+						"<button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item'" +
+						"style='height:" + itemH + "px;width:" + (itemW * spanColumn) + "px'>" + item.label + "</button></td>";
+				} else
+				if(indx % colums == colums - 1) {
+					html += "<td width=" + tdItemW + " height=" + tdItemH + " colspan='" + spanColumn + "'>" +
+						"<button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' " +
+						"style='height:" + itemH + "px;width:" + (itemW * spanColumn) + "px'>" + item.label + "</button></td>";
 					html += "</tr>";
 				} else {
-					html += "<td colspan='" + spanColumn + "'><button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' style='height:" + itemSize + "px;width:" + (itemSize * spanColumn + 1) + "px'>" + item.label + "</button></td>";
+					html += "<td width=" + tdItemW + " height=" + tdItemH + " colspan='" + spanColumn + "'>" +
+						"<button data-id='" + item.value + "' class='" + tbNode + "-item keybord-item' " +
+						" style='height:" + itemH + "px;width:" + (itemW * spanColumn) + "px'>" + item.label + "</button></td>";
 				}
 			}
 			html += "</tbody>";
@@ -165,8 +177,7 @@
 		if($input && $input.length > 0) {
 			$input.attr("readonly", true);
 		}
-		var keybordObj = new KeyBord(this, $input, options);
-		keybordObj.createDigitalKeybordHtml(this).createCharKeybordHtml(this, true).bindEvents();
+		new KeyBord(this, $input, options).createDigitalKeybordHtml(this).createCharKeybordHtml(this, true).bindEvents();
 	}
 
-})(jQuery, window, document);
+})(Zepto, window, document);

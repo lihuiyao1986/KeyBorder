@@ -5,15 +5,18 @@
 		<meta charset="utf-8" />
 		<title></title>
 		<link rel="stylesheet" href="css/keybord.css" />
-		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/zepto_1.1.3.js"></script>
 		<script type="text/javascript" src="js/keybord.js"></script>
 		<script>
 			$(document).ready(function() {
 				var pageForm = {
 					init: function() {
-						$("#keybord-container").KeyBord($("#myInput"),{
-							digitalHiddenSwitch : false,
-							itemSpacing : 5
+						$("#keybord-container").KeyBord($("#myInput"), {
+							digitalHiddenSwitch: false,
+							itemW: 80, // 高度
+							itemH: 80, // 宽度
+							verticalSpacing: 10, //垂直间隔
+							horizontalSpacing: 10, //水平间隔
 						});
 					}
 				};
