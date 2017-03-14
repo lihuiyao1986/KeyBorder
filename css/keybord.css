@@ -1,13 +1,11 @@
 table.digtal-keybord,
 table.char-keybord {
 	table-layout: fixed;
-	/*border-collapse: separate;
-	border-spacing: 5px;*/
 	border: none!important;
 }
 
-.digtal-keybord tbody tr td>button,
-.char-keybord tbody tr td>button {
+table.digtal-keybord.default-theme tbody tr td>button,
+table.char-keybord.default-theme tbody tr td>button {
 	border: none;
 	outline: none;
 	font-size: 18px;
@@ -20,16 +18,16 @@ table.char-keybord {
 	display: inline-block;
 }
 
-.digtal-keybord tbody tr td,
-.char-keybord tbody tr td {
+table.digtal-keybord.default-theme tbody tr td,
+table.char-keybord.default-theme tbody tr td {
 	background: transparent;
 	padding: 0px!important;
 	margin: 0px!important;
 	border: none!important;
 }
 
-.digtal-keybord tbody tr td>button:hover,
-.char-keybord tbody tr td>button:hover {
+table.digtal-keybord.default-theme tbody tr td>button:hover,
+table.char-keybord.default-theme tbody tr td>button:hover {
 	cursor: pointer;
 	font-size: 20px;
 	background-color: #AFAFAF;

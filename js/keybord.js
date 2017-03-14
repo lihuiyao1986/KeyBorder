@@ -9,7 +9,8 @@
 				itemW: 80, // 高度
 				itemH: 80, // 宽度
 				verticalSpacing: 10,//垂直间隔
-				horizontalSpacing: 10,//水平间隔
+				horizontalSpacing: 10,//水平间隔,
+				theme:"default-theme",//主题
 				digitalKeybordContainer: "digtal-keybord", // 放置数字键盘的容器
 				charKeybordContainer: "char-keybord", // 放置字母键盘的容器
 				digitalKeybordColums: 3, //数字键盘每行显示的列数
@@ -143,9 +144,10 @@
 			var itemW = this.options.itemW;
 			var tdItemH = itemH + this.options.verticalSpacing;
 			var tdItemW = itemW + this.options.horizontalSpacing;
+			var theme = this.options.theme;
 			items = items || [];
 			var hiddenStyle = isHidden ? 'style="display:none;"' : '';
-			var html = '<table ' + hiddenStyle + ' class="' + tbNode + '" cellpadding="0" cellspacing="0">';
+			var html = '<table ' + hiddenStyle + ' class="' + tbNode + " " + theme +'" cellpadding="0" cellspacing="0">';
 			html += "<tbody class='" + tbNode + "-tb'>";
 			for(var indx in items) {
 				var item = items[indx];
